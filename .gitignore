@@ -1,0 +1,9 @@
+# 运行产物与本地配置(含 Telegram token,切勿提交)
+config.json
+state.json
+routes.json
+copytrader.log
+copytrader.lock
+node_modules/
+*.tmp
+.DS_Store

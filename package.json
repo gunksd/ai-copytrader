@@ -1,0 +1,14 @@
+{
+  "name": "ai-copytrader",
+  "version": "1.0.0",
+  "description": "BSC route-mirroring copy trader via Binance Agentic Wallet CLI; the script never touches a private key.",
+  "type": "module",
+  "bin": { "ai-copytrader": "copytrader.mjs" },
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start": "node copytrader.mjs",
+    "doctor": "node copytrader.mjs doctor",
+    "test": "node --test 'test/*.test.mjs'"
+  },
+  "license": "MIT"
+}

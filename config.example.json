@@ -1,0 +1,58 @@
+{
+  "_说明": "复制本文件为 config.json 再填写。以 _ 开头的键是注释,程序会忽略。",
+
+  "wallet": "<你的 AI 钱包 BSC 地址,和 baw wallet address 一致>",
+
+  "targets": [
+    { "address": "<跟单目标地址 A>", "label": "目标A", "sizeRatio": 0.2 },
+    { "address": "<跟单目标地址 B>", "label": "目标B" }
+  ],
+  "_targets": "sizeRatio 是跟单比例:目标花 1 BNB、比例 0.2,你花 0.2 BNB。不填就用下面的全局 sizeRatio",
+
+  "sizeRatio": 0.2,
+  "slippagePct": 15,
+  "_slippagePct": "minOut = 模拟预估产出 × (1 - 15%)。数值越小越不容易被夹,但越容易失败",
+
+  "copy": {
+    "autoExecute": false,
+    "_autoExecute": "false = dry-run,只模拟和 preview,不下单。确认日志没问题后再改成 true",
+    "buys": true,
+    "sells": true,
+    "minBuyBnb": 0.001,
+    "maxBuyBnb": null,
+    "_maxBuyBnb": "单笔跟买上限(BNB),null 表示不限",
+    "skipIfNoMinOut": false,
+    "_skipIfNoMinOut": "路由找不到 minOut 字段时:false = 照样下单(minOut 为 0,有被夹风险);true = 跳过",
+    "failCooldownMs": 60000,
+    "sellMinRatioBps": 100,
+    "sellFullExitBps": 9900,
+    "_sell": "目标卖出持仓的 X%,你卖出你持仓的 X%;X 低于 1% 按 1% 算,高于 99% 直接清仓",
+    "sellMarketFallback": true,
+    "_sellMarketFallback": "镜像目标的卖出路由失败时,改走币安聚合器 market-order(带 MEV 保护)",
+    "buyMarketFallback": true,
+    "_buyMarketFallback": "镜像目标的买入路由无法改写时(自定义路由/签名单),用 BNB 走聚合器买同一个币",
+    "preApproveSell": true
+  },
+
+  "market": { "slippagePct": 15, "mev": true, "gasLevel": "MEDIUM" },
+  "_market": "只在路由失败、改走币安聚合器时使用",
+
+  "rpc": {
+    "http": [
+      "https://bsc-rpc.publicnode.com",
+      "https://bsc-dataseed.binance.org/",
+      "https://bsc-dataseed1.defibit.io/"
+    ],
+    "wss": ["wss://bsc-rpc.publicnode.com"],
+    "pollMs": 1000,
+    "headStallMs": 3000
+  },
+
+  "telegram": {
+    "enabled": false,
+    "token": "<@BotFather 给的 bot token>",
+    "chatId": "<你的 chat id>"
+  },
+
+  "bawPath": ""
+}
